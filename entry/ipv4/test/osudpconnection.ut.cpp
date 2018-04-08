@@ -153,7 +153,7 @@ TEST_F(OsUdpConnectionTest, sendToShouldSetENUMIfSuccesful)
 	MockSocket mockSocket;
 	OsUdpConnection osUdpConnection(&mockSocket);
 
-	sockaddr* a_sockaddr;// = new sockaddr();
+	sockaddr* a_sockaddr = new sockaddr();
 	OsUdpConnectionTest::init(a_sockaddr, osUdpConnection);
 
 	//setup
@@ -161,7 +161,7 @@ TEST_F(OsUdpConnectionTest, sendToShouldSetENUMIfSuccesful)
 	    .WillOnce(Return(0));
 	EXPECT_CALL(mockSocket, socket(IOsSocket::Socket::SOCK_UDP)).Times(1)
 	    .WillOnce(Return(0));
-	EXPECT_CALL(mockSocket, setSocketAddr(a_sockaddr,_,_)).Times(1).WillOnce(DoAll(SetArgPointee<0>(*a_sockaddr),
+	EXPECT_CALL(mockSocket, setSocketAddr(_,_,_)).Times(1).WillOnce(DoAll(SetArgPointee<0>(*a_sockaddr),
             Return(0)));
 
 	//Test
