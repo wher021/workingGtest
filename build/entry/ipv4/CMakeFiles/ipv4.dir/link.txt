@@ -1,0 +1,2 @@
+/usr/bin/ar qc libipv4.a  CMakeFiles/ipv4.dir/src/ossocket.cpp.o CMakeFiles/ipv4.dir/src/osudpconnection.cpp.o
+/usr/bin/ranlib libipv4.a

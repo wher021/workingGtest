@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/willy/eclipse-workspace/TestProj/entry/ipv4/iossocket.h
+sys/socket.h
+-
+
+/home/willy/eclipse-workspace/TestProj/entry/ipv4/osudpconnection.h
+iossocket.h
+/home/willy/eclipse-workspace/TestProj/entry/ipv4/iossocket.h
+stdexcept
+-
+
+/home/willy/eclipse-workspace/TestProj/entry/ipv4/src/osudpconnection.cpp
+../osudpconnection.h
+/home/willy/eclipse-workspace/TestProj/entry/ipv4/osudpconnection.h
+

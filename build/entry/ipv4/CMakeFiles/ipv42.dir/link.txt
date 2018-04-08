@@ -1,0 +1,2 @@
+/usr/bin/ar qc libipv42.a  CMakeFiles/ipv42.dir/src/osudpconnection.cpp.o
+/usr/bin/ranlib libipv42.a

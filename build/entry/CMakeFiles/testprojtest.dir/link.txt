@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/testprojtest.dir/main.cpp.o CMakeFiles/testprojtest.dir/ipv4/test/socket.ut.cpp.o CMakeFiles/testprojtest.dir/ipv4/test/osudpconnection.ut.cpp.o  -o testprojtest {CMAKE_BINARY_DIR}/gmock/libgmock_main.a ipv4/libipv4.a -lpthread 
