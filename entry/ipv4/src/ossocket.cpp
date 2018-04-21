@@ -10,7 +10,7 @@
 #include <cstring>
 #include<iostream>
 
-OsSocket::OsSocket() : m_initialized(false), m_socketDescriptor(-1)
+OsSocket::OsSocket() : m_initialized(false), m_socketDescriptor(-1), m_ip4addr(nullptr)
 {
 }
 
@@ -35,14 +35,20 @@ int OsSocket::getSocket()
 	return m_socketDescriptor;
 }
 
-int OsSocket::setSocketAddr(struct sockaddr* a_sockaddr, std::string a_ipAdress, uint a_port)
+int OsSocket::setSocketAddr(std::string a_ipAdress, uint a_port)
 {
-	struct sockaddr_in* ip4addr = reinterpret_cast<sockaddr_in*>(a_sockaddr);
+	sockaddr_in* ip4addr = new sockaddr_in();
 
 	ip4addr->sin_family = AF_INET;
 	ip4addr->sin_port = htons(a_port);
 	inet_pton(AF_INET, a_ipAdress.c_str(), &ip4addr->sin_addr);
+	m_ip4addr = reinterpret_cast<sockaddr*>(ip4addr);
 	return 99;
+}
+
+sockaddr* OsSocket::getSocketAddr()
+{
+	return m_ip4addr;
 }
 
 ssize_t OsSocket::sendto(int sockfd, const void *buf, size_t len, int flags, const struct sockaddr *dest_addr, socklen_t addrlen)
@@ -58,7 +64,6 @@ ssize_t OsSocket::sendto(int sockfd, const void *buf, size_t len, int flags, con
 		   error("sendto error");
 	   }
 	   return n;
-	   //buffer = buf;
 }
 
 int OsSocket::bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen)

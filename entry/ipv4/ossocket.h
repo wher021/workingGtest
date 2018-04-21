@@ -33,7 +33,8 @@ public:
 	ssize_t recvfrom(int sockfd, void *buf, size_t len, int flags,
 	                 struct sockaddr *src_addr, socklen_t *addrlen);
 	virtual int getSocket();
-	virtual int setSocketAddr(struct sockaddr* a_sockaddr, std::string a_ipAdress, uint a_port);
+	virtual int setSocketAddr(std::string a_ipAdress, uint a_port);
+	virtual sockaddr* getSocketAddr();
 
 	bool getInit()
 	{
@@ -48,6 +49,7 @@ private:
 	}
 	bool m_initialized;
 	int m_socketDescriptor;
+	struct sockaddr* m_ip4addr;
 };
 
 #endif /* DEPENDENCYINJECTION_IPV4_OSSOCKET_H_ */

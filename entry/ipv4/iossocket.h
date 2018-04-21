@@ -21,7 +21,12 @@ public:
 	};
 	virtual int socket(IOsSocket::Socket socket_type) = 0;
 	virtual int getSocket() = 0;
-	virtual int setSocketAddr(struct sockaddr* a_sockaddr, std::string a_ipAdress, uint a_port) = 0;
+	virtual int setSocketAddr(std::string a_ipAdress, uint a_port) = 0;
+	virtual sockaddr* getSocketAddr() = 0;
+	virtual ssize_t sendto(int sockfd, const void *buf, size_t len, int flags,
+	               const struct sockaddr *dest_addr, socklen_t addrlen) = 0;
+	virtual ssize_t recvfrom(int sockfd, void *buf, size_t len, int flags,
+	                 struct sockaddr *src_addr, socklen_t *addrlen) = 0;
 
 protected:
 	virtual ~IOsSocket(){};

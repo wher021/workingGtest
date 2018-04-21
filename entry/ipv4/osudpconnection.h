@@ -14,15 +14,11 @@ class OsUdpConnection
 {
 public:
 	OsUdpConnection(IOsSocket* a_iosSocket);
+	int InitializeSocket();
 	int SendTo(std::string a_ipAdress, uint a_port, const char* a_buffer);
-	friend class OsUdpConnectionTest;
+	int RecvFrom(char *a_buffer, sockaddr* a_recvAddr, socklen_t* a_addrLen);
 private:
-	void setSocketAddr(struct sockaddr* a)
-	{
-		m_sockaddr = a;
-	}
 	IOsSocket* m_iosSocket;
-	struct sockaddr* m_sockaddr;
 };
 
 
