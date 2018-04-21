@@ -51,7 +51,8 @@ int OsUdpConnection::SendTo(std::string a_ipAdress, uint a_port, const char* a_b
 	}
 
 	sockaddr* sockAddr = m_iosSocket->getSocketAddr();
-	res = m_iosSocket->sendto(socketDescriptor, a_buffer, strlen(a_buffer),0, (const struct sockaddr *)&sockAddr, sizeof(sockAddr));
+
+	res = m_iosSocket->sendto(socketDescriptor, a_buffer, strlen(a_buffer),0, (const struct sockaddr *)sockAddr, sizeof(*sockAddr));
 
 	return res;
 }

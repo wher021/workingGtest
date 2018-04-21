@@ -16,7 +16,7 @@ OsSocket::OsSocket() : m_initialized(false), m_socketDescriptor(-1), m_ip4addr(n
 
 int OsSocket::socket(IOsSocket::Socket socket_type)
 {
-	int m_socketDescriptor = -1;
+	m_socketDescriptor = -1;
 	m_socketDescriptor = ::socket(AF_INET, socket_type == IOsSocket::Socket::SOCK_UDP ? SOCK_DGRAM : SOCK_STREAM, 0);
 	if(m_socketDescriptor < 0)
 	{
@@ -40,8 +40,8 @@ int OsSocket::setSocketAddr(std::string a_ipAdress, uint a_port)
 	sockaddr_in* ip4addr = new sockaddr_in();
 
 	ip4addr->sin_family = AF_INET;
-	ip4addr->sin_port = htons(a_port);
-	inet_pton(AF_INET, a_ipAdress.c_str(), &ip4addr->sin_addr);
+	ip4addr->sin_port = a_port;
+	ip4addr->sin_addr.s_addr = inet_addr(a_ipAdress.c_str());//specify server address
 	m_ip4addr = reinterpret_cast<sockaddr*>(ip4addr);
 	return 99;
 }
